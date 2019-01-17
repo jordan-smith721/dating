@@ -1,9 +1,9 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Jsmit
+ * User: Jordan Smith
  * Date: 1/14/2019
- * Time: 7:43 PM
+ * Index page for routing through dating site
  */
 
 //Turn on error reporting
