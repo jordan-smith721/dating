@@ -1,7 +1,8 @@
 body{
     height: 100%;
+    overflow-y: hidden;
 }
 
 .container {
-    height: 100vh;
+    height: 90vh;
 }

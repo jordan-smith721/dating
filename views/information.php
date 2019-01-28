@@ -15,9 +15,9 @@
     <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
-<?php
-    include 'header.php';
-?>
+
+<include href="views/header.php"></include>
+
 <div class="container">
     <div class="row d-flex h-100">
     <div class="col-12 my-auto">

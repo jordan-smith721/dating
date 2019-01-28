@@ -47,13 +47,37 @@
                         <div class="form-group">
                             <label for="state">State</label>
                             <select name="state" id="state" class="form-control">
-
+                                <option>--Select a State--</option>
+                                <repeat group="{{ @states }}" value="{{@stateOption}}">
+                                    <option>{{@stateOption}}</option>
+                                </repeat>
                             </select>
                         </div>
+                        <fieldset class="form-group">
+                            <legend>Seeking</legend>
+                            <div class="form-check form-check-inline">
+                                <input class= form-check-input" type="radio" name="gender" id="male" value="male">
+                                <label class="form-check-label pl-2" for="male">Male</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class= form-check-input" type="radio" name="gender" id="female" value="female">
+                                <label class="form-check-label pl-2" for="female">Female</label>
+                            </div>
+                        </fieldset>
                     </form>
-                </div>
-            </div>
+                </div><!--End col-6-->
+                <div class="col-6">
+                    <form action="" method="post">
+                        <div class="form-group">
+                            <label for="bio">Biography</label>
+                            <textarea name="bio" id="" rows="5" class="form-control"></textarea>
+                        </div>
+                    </form>
+                </div><!--End col-6-->
+            </div><!--End Row-->
+            <div class="row">
 
+            </div><!--End row-->
         </div><!--End col-12-->
     </div><!--End row-->
 </div><!--End container->
