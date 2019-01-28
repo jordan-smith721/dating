@@ -1,6 +1,6 @@
 <!--Jordan Smith
     1/14/2019
-    home.html - Home view for dating site-->
+    home.php - Home view for dating site-->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="styles/styles.css"><!--My CSS-->
 </head>
 <body>
+
+<include href="views/header.php"></include>
 
 <div class="container d-flex">
     <div class="row my-auto">
@@ -38,7 +40,7 @@
             </blockquote>
             <hr>
             <div class="text-center">
-                <button class="btn-lg btn-primary">Create a Profile!</button>
+                <a href="information" class="btn-lg btn-primary">Create a Profile!</a>
             </div>
         </div><!--#about-->
 

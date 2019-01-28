@@ -12,9 +12,12 @@
     <!--icons-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!--My CSS-->
-    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
+<?php
+    include 'header.php';
+?>
 <div class="container">
     <div class="row d-flex h-100">
     <div class="col-12 my-auto">
