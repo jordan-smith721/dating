@@ -24,12 +24,12 @@ $f3->route('GET /', function ()
     echo Template::instance()->render('views/home.php');
 });
 
-$f3->route('GET /information', function()
+$f3->route('GET|POST /information', function()
 {
     echo Template::instance()->render('views/information.php');
 });
 
-$f3->route('GET /profile', function($f3)
+$f3->route('GET|POST /profile', function($f3)
 {
     $f3->set('states', array(
         'AL' => 'Alabama',

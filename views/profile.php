@@ -26,6 +26,8 @@
 </head>
 <body>
 
+<include href="views/header.php"></include>
+
 <div class="container">
     <div class="row d-flex h-100">
         <div class="col-12 my-auto">
@@ -39,7 +41,7 @@
 
             <div class="row">
                 <div class="col-6">
-                    <form action="" method="post">
+                    <form id="profileForm" action="#" method="post">
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input type="email" id="email" class="form-control">
@@ -75,13 +77,12 @@
                     </form>
                 </div><!--End col-6-->
             </div><!--End Row-->
-            <div class="row">
-
-            </div><!--End row-->
+            <div class="row float-right">
+                <input type="submit" id="submitProfile" class="btn btn-primary" value="Next >">
+            </div>
         </div><!--End col-12-->
     </div><!--End row-->
 </div><!--End container->
-
 
 <!--JQUERY - Popper - Boostrap JS-->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -90,5 +91,9 @@
         integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
         integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+<!--My JS--->
+<script src="js/dating-js.js"></script>
+
 </body>
 </html>
