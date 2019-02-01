@@ -10,7 +10,8 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-require_once('vendor/autoload.php');
+require_once 'vendor/autoload.php';
+session_start();
 
 //Create an instance of the Base class
 $f3 = Base::instance();
@@ -18,19 +19,91 @@ $f3 = Base::instance();
 //Turn on Fat-Free error reporting
 $f3->set('DEBUG', 3);
 
+//require data validation
+require_once 'model/data-validation.php';
+
 //Define a default route
 $f3->route('GET /', function ()
 {
     echo Template::instance()->render('views/home.php');
 });
 
-$f3->route('GET|POST /information', function()
+$f3->route('GET|POST /information', function($f3)
 {
-    echo Template::instance()->render('views/information.php');
+    $_SESSION = array();
+    $isValid = true;
+
+    if(!empty($_POST))
+    {
+        //validate first name
+        if(isset($_POST['fname']))
+        {
+            $fname = $_POST['fname'];
+            if(validName($fname))
+            {
+                $_SESSION['fname'] = $fname;
+            }
+            else
+            {
+                $f3->set("errors['fname']", "Please enter a first name.");
+                $isValid = false;
+            }
+        }
+        //validate last name
+        if(isset($_POST['lname']))
+        {
+            $lname = $_POST['lname'];
+            if(validName($lname))
+            {
+                $_SESSION['lname'] = $lname;
+            }
+            else
+            {
+                $f3->set("errors['lname']", "Please enter a last name.");
+                $isValid = false;
+            }
+        }
+        //validate age
+        if(isset($_POST['age']))
+        {
+            $age = $_POST['age'];
+            if(validAge($age))
+            {
+                $_SESSION['age'] = $age;
+            }
+            else
+            {
+                $f3->set("errors['age']", "Please enter a valid age.");
+                $isValid = false;
+            }
+        }
+        //validate phone
+        if(isset($_POST['phone']))
+        {
+            $phone = $_POST['phone'];
+            if(validPhone($phone))
+            {
+                $_SESSION['phone'] = $phone;
+            }
+            else
+            {
+                $f3->set("errors['age']", "Please enter a valid phone number.");
+                $isValid = false;
+            }
+
+        }
+        if($isValid)
+        {
+            $f3->reroute('profile');
+        }
+    }
+
+    echo Template::instance()->render('views/information.html');
 });
 
 $f3->route('GET|POST /profile', function($f3)
 {
+
     $f3->set('states', array(
         'AL' => 'Alabama',
         'AK' => 'Alaska',
@@ -84,6 +157,7 @@ $f3->route('GET|POST /profile', function($f3)
         'WI' => 'Wisconsin',
         'WY' => 'Wyoming',
         ));
+
 
     echo Template::instance()->render('views/profile.php');
 });

@@ -12,7 +12,6 @@ function validName($name)
     {
         return false;
     }
-
     return true;
 }
 

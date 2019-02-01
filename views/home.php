@@ -1,22 +1,6 @@
-<!--Jordan Smith
-    1/14/2019
-    home.php - Home view for dating site-->
+<include href="views/head.html"></include>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale-1"> <!--FOR MOBILE VIEW-->
-    <title>Dating Site</title>
-
-    <!--Bootstrap CSS-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles/styles.css"><!--My CSS-->
-</head>
-<body>
-
-<include href="views/header.php"></include>
+<include href="views/navbar.php"></include>
 
 <div class="container d-flex">
     <div class="row my-auto">
