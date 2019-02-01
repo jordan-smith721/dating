@@ -87,7 +87,7 @@ $f3->route('GET|POST /information', function($f3)
             }
             else
             {
-                $f3->set("errors['age']", "Please enter a valid phone number.");
+                $f3->set("errors['phone']", "Please enter a valid phone number.");
                 $isValid = false;
             }
 
@@ -103,7 +103,6 @@ $f3->route('GET|POST /information', function($f3)
 
 $f3->route('GET|POST /profile', function($f3)
 {
-
     $f3->set('states', array(
         'AL' => 'Alabama',
         'AK' => 'Alaska',
@@ -157,6 +156,27 @@ $f3->route('GET|POST /profile', function($f3)
         'WI' => 'Wisconsin',
         'WY' => 'Wyoming',
         ));
+
+    $isValid = true;
+
+    if(isset($_POST['email']))
+    {
+        $email = $_POST['email'];
+        if(validEmail($email))
+        {
+            $_SESSION['email'] = $email;
+        }
+        else
+        {
+            $f3->set("errors['email']", "Please enter a valid email.");
+            $isValid = false;
+        }
+
+        if($isValid)
+        {
+            $f3->reroute('interests');
+        }
+    }
 
 
     echo Template::instance()->render('views/profile.php');

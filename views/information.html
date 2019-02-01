@@ -16,29 +16,30 @@
     <div class="row">
         <div class="col-sm-8">
             <form id="infoForm" method="POST" action="">
+
                 <label for="fname">First Name</label>
                 <div class="input-group">
-                    <check if="{{ isset(@errors['fname']) }}">
-                        <span>{{ @errors['fname'] }}</span>
-                    </check>
                     <input type="text" id="fname" name="fname" value="{{ @_POST['fname'] }}" class="form-control border-right-0">
                     <div class="input-group-append">
                         <span class="input-group-text bg-white border-left-0 fa fa-address-card-o"></span>
                     </div>
                 </div>
+                <check if="{{ isset(@errors['fname']) }}">
+                    <p class="text-danger">{{ @errors['fname'] }}</p>
+                </check>
                 <div class="form-group">
                     <label for="lname">Last Name</label>
-                    <check if="{{@errors['lname']}}">
-                        <p>{{@errors['lname']}}</p>
-                    </check>
                     <input type="text" id="lname" name="lname" value="{{ @_POST['lname'] }}" class="form-control">
+                    <check if="{{@errors['lname']}}">
+                        <p class="text-danger">{{@errors['lname']}}</p>
+                    </check>
                 </div>
                 <div class="form-group">
                     <label for="age">Age</label>
-                    <check if="{{@errors['lname']}}">
-                        <p>{{@errors['age']}}</p>
-                    </check>
                     <input type="text" id="age" name="age" value="{{ @_POST['age'] }}" class="form-control">
+                    <check if="{{@errors['lname']}}">
+                        <p class="text-danger">{{@errors['age']}}</p>
+                    </check>
                 </div>
                 <fieldset class="form-group">
                     <legend>Gender</legend>
@@ -53,11 +54,11 @@
                 </fieldset>
                 <div class="form-group">
                     <label for="phone">Phone Number</label>
-                    <check if="{{@errors['lname']}}">
-                        <p>{{@errors['phone']}}</p>
-                    </check>
                     <input type="tel" id="phone" class="form-control" name="phone"
                            value="{{ @_POST['phone'] }}" placeholder="2223334444">
+                    <check if="{{@errors['phone']}}">
+                        <p class="text-danger">{{@errors['phone']}}</p>
+                    </check>
                 </div>
             </form>
         </div>

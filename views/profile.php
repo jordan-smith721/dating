@@ -13,13 +13,16 @@
                     <hr>
                 </div><!--End col-12-->
             </div><!--End row-->
-            <form id="profileForm" action="interests" method="post">
+            <form id="profileForm" action="" method="post">
             <div class="row">
                 <div class="col-sm-6">
 
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" id="email" name="email" class="form-control">
+                            <input type="email" id="email" name="email" class="form-control" value="{{ @_POST['email'] }}">
+                            <check if="{{@errors['email']}}">
+                                <p class="text-danger">{{@errors['email']}}</p>
+                            </check>
                         </div>
                         <div class="form-group">
                             <label for="state">State</label>
