@@ -30,21 +30,30 @@
     </div>
     <div class="row">
         <div class="col-sm-8">
-            <form id="infoForm" method="POST" action="profile">
+            <form id="infoForm" method="POST" action="#">
                 <label for="fname">First Name</label>
                 <div class="input-group">
-                    <input type="text" id="fname" class="form-control border-right-0">
+                    <check if="{{@errors['fname']}}">
+                        <p>{{@errors['fname']}}</p>
+                    </check>
+                    <input type="text" id="fname" name="fname" value="{{ @_POST['fname'] }}" class="form-control border-right-0">
                     <div class="input-group-append">
                         <span class="input-group-text bg-white border-left-0 fa fa-address-card-o"></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="lname">Last Name</label>
-                    <input type="text" id="lname" class="form-control">
+                    <check if="{{@errors['lname']}}">
+                        <p>{{@errors['lname']}}</p>
+                    </check>
+                    <input type="text" id="lname" name="lname" value="{{ @_POST['lname'] }}" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="age">Age</label>
-                    <input type="text" id="age" class="form-control">
+                    <check if="{{@errors['lname']}}">
+                        <p>{{@errors['age']}}</p>
+                    </check>
+                    <input type="text" id="age" name="age" value="{{ @_POST['age'] }}" class="form-control">
                 </div>
                 <fieldset class="form-group">
                     <legend>Gender</legend>
@@ -59,7 +68,11 @@
                 </fieldset>
                 <div class="form-group">
                     <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" class="form-control" placeholder="222-333-4444">
+                    <check if="{{@errors['lname']}}">
+                        <p>{{@errors['phone']}}</p>
+                    </check>
+                    <input type="tel" id="phone" class="form-control" name="phone"
+                           value="{{ @_POST['phone'] }}" placeholder="2223334444">
                 </div>
             </form>
         </div>
