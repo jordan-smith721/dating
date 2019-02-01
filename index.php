@@ -88,5 +88,15 @@ $f3->route('GET|POST /profile', function($f3)
     echo Template::instance()->render('views/profile.php');
 });
 
+$f3->route('GET|POST /interests', function($f3)
+{
+   $f3->set('indoors', array('TV', 'Video Games', 'Reading', 'Cooking'));
+   $f3->set('indoors2', array('Board Games', 'Movies', 'Puzzles', 'Gym'));
+   $f3->set('outdoors', array('Hiking', 'Biking', 'Swimming', 'Climbing'));
+   $f3->set('outdoors2', array('Running', 'Camping', 'Beach', 'Sports'));
+
+   echo Template::instance()->render('views/interests.php');
+});
+
 //Run fat free
 $f3->run();

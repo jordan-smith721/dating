@@ -38,10 +38,10 @@
                     <hr>
                 </div><!--End row-->
             </div><!--End row-->
-
+            <form id="profileForm" action="interests" method="post">
             <div class="row">
                 <div class="col-6">
-                    <form id="profileForm" action="#" method="post">
+
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input type="email" id="email" class="form-control">
@@ -66,17 +66,16 @@
                                 <label class="form-check-label pl-2" for="female">Female</label>
                             </div>
                         </fieldset>
-                    </form>
+
                 </div><!--End col-6-->
                 <div class="col-6">
-                    <form action="" method="post">
                         <div class="form-group">
                             <label for="bio">Biography</label>
                             <textarea name="bio" id="" rows="5" class="form-control"></textarea>
                         </div>
-                    </form>
                 </div><!--End col-6-->
             </div><!--End Row-->
+            </form>
             <div class="row float-right">
                 <input type="submit" id="submitProfile" class="btn btn-primary" value="Next >">
             </div>
