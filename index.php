@@ -98,5 +98,11 @@ $f3->route('GET|POST /interests', function($f3)
    echo Template::instance()->render('views/interests.php');
 });
 
+$f3->route('GET|POST /summary', function()
+{
+
+    echo Template::instance()->render('views/summary.php');
+});
+
 //Run fat free
 $f3->run();

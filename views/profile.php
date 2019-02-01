@@ -30,17 +30,17 @@
 
 <div class="container">
     <div class="row d-flex h-100">
-        <div class="col-12 my-auto">
+        <div class="col-sm-12 my-auto">
 
             <div class="row">
-                <div class="col-12">
+                <div class="col-sm-12">
                     <h1>Profile</h1>
                     <hr>
-                </div><!--End row-->
+                </div><!--End col-12-->
             </div><!--End row-->
             <form id="profileForm" action="interests" method="post">
             <div class="row">
-                <div class="col-6">
+                <div class="col-sm-6">
 
                         <div class="form-group">
                             <label for="email">Email</label>
@@ -68,7 +68,7 @@
                         </fieldset>
 
                 </div><!--End col-6-->
-                <div class="col-6">
+                <div class="col-sm-6">
                         <div class="form-group">
                             <label for="bio">Biography</label>
                             <textarea name="bio" id="" rows="5" class="form-control"></textarea>

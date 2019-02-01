@@ -29,16 +29,16 @@
 
 <div class="container">
     <div class="row d-flex h-100">
-        <div class="col-12 my-auto">
+        <div class="col-sm-12 my-auto">
             <div class="row">
-                <div class="col-12">
+                <div class="col-sm-12">
                     <h1>Interests</h1>
                     <hr>
                 </div><!--End col-12-->
             </div><!--End Row-->
             <div class="row">
-                <div class="col-12">
-                    <form id="interestForm" action="" method="post">
+                <div class="col-sm-12">
+                    <form id="interestForm" action="summary" method="post">
         <!----------------INDOOR ACTIVITIES----------------------------->
                         <!--Activites are in two rows with 4 checkboxes each - determined by the
                          arrays in index.php-->

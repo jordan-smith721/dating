@@ -20,16 +20,16 @@
 
 <div class="container">
     <div class="row d-flex h-100">
-    <div class="col-12 my-auto">
+    <div class="col-sm-12 my-auto">
 
     <div class="row">
-        <div class="col-12">
+        <div class="col-sm-12">
             <h1>Personal Information</h1>
             <hr>
         </div>
     </div>
     <div class="row">
-        <div class="col-8">
+        <div class="col-sm-8">
             <form id="infoForm" method="POST" action="profile">
                 <label for="fname">First Name</label>
                 <div class="input-group">
@@ -63,7 +63,7 @@
                 </div>
             </form>
         </div>
-        <div class="col-4">
+        <div class="col-sm-4">
             <div class="card bg-light text-center">
                 <div class="card-body">
                     <strong>Note:</strong> All information entered is protected by our <a href="#">privacy policy</a>. Profile
