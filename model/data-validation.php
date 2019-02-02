@@ -28,7 +28,7 @@ function validAge($age)
 function validPhone($phone)
 {
     //phone number must be 10 digits long and only numbers
-    return preg_match('/^[0-9]{10}+$/', $phone);
+    return $phone !== "" AND preg_match('/^[0-9]{10}+$/', $phone);
 }
 
 function validEmail($email)
@@ -40,13 +40,20 @@ function validOutdoor($outdoor)
 {
     global $f3;
 
+    $validOutdoors =  $f3->get('outdoors');
+    $validOutdoors2 = $f3->get('outdoors2');
+
     //check if selection is in array of valid choices
-    if(in_array($outdoor, $f3->get('outdoors')) OR in_array($outdoor, $f3->get('outdoors2')))
+    foreach($outdoor as $activity)
     {
-        return true;
+        if(!in_array($activity, $validOutdoors) AND !in_array($activity, $validOutdoors2))
+        {
+            return false;
+        }
     }
 
-    return false;
+    return true;
+
 
 }
 
@@ -54,11 +61,17 @@ function validIndoor($indoor)
 {
     global $f3;
 
+    $validIndoors =  $f3->get('indoors');
+    $validIndoors2 = $f3->get('indoors2');
+
     //check if selection is in array of valid choices
-    if(in_array($indoor, $f3->get('indoors')) OR in_array($indoor, $f3->get('indoors2')))
+    foreach($indoor as $activity)
     {
-        return true;
+        if(!in_array($activity, $validIndoors) AND !in_array($activity, $validIndoors2))
+        {
+            return false;
+        }
     }
 
-    return false;
+    return true;
 }

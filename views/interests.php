@@ -14,18 +14,25 @@
             </div><!--End Row-->
             <div class="row">
                 <div class="col-sm-12">
-                    <form id="interestForm" action="summary" method="post">
+                    <form id="interestForm" action="" method="post">
         <!----------------INDOOR ACTIVITIES----------------------------->
                         <!--Activites are in two rows with 4 checkboxes each - determined by the
                          arrays in index.php-->
                         <fieldset class="form-group">
                             <legend>Indoor activities</legend>
+                            <check if="{{@errors['indoors']}}">
+                                <p class="text-danger">{{@errors['indoors']}}</p>
+                            </check>
                             <div class="form-row">
                                 <div class="col-sm-12">
                                     <repeat group="{{ @indoors }}" value="{{ @activity }}">
                                         <div class="form-check form-check-inline col-sm-2 ml-5 p-2">
-                                        <input type="checkbox" class="form-check-input"
-                                               value="{{ @activity }}" id="{{ @activity }}">
+                                        <input type="checkbox" name="indoors[]" class="form-check-input"
+                                               value="{{ @activity }}"
+                                            <check if="{{ in_array(@activity, @_POST['indoors'])}}">
+                                                checked="checked"
+                                            </check>
+                                            id="{{ @activity }}">
                                         <label class="form-check-label" for="{{ @activity }}">{{ @activity }}</label>
                                         </div>
                                     </repeat>
@@ -35,8 +42,12 @@
                                 <div class="col-sm-12">
                                     <repeat group="{{ @indoors2 }}" value="{{ @activity }}">
                                         <div class="form-check form-check-inline col-sm-2 ml-5 p-2">
-                                            <input type="checkbox" class="form-check-input"
-                                                   value="{{ @activity }}" id="{{ @activity }}">
+                                            <input type="checkbox" name="indoors[]" class="form-check-input"
+                                                   value="{{ @activity }}"
+                                            <check if="{{ in_array(@activity, @_POST['indoors'])}}">
+                                                checked="checked"
+                                            </check>
+                                                   id="{{ @activity }}">
                                             <label class="form-check-label" for="{{ @activity }}">{{ @activity }}</label>
                                         </div>
                                     </repeat>
@@ -46,12 +57,19 @@
         <!-----------------------------------OUTDOOR ACTIVITES----------------------->
                         <fieldset class="form-group">
                             <legend>Outdoor activities</legend>
+                            <check if="{{@errors['outdoors']}}">
+                                <p class="text-danger">{{@errors['outdoors']}}</p>
+                            </check>
                             <div class="form-row">
                                 <div class="col-sm-12">
                                     <repeat group="{{ @outdoors }}" value="{{ @activity }}">
                                         <div class="form-check form-check-inline col-sm-2 ml-5 p-2">
-                                            <input type="checkbox" class="form-check-input"
-                                                   value="{{ @activity }}" id="{{ @activity }}">
+                                            <input type="checkbox" name="outdoors[]" class="form-check-input"
+                                                   value="{{ @activity }}"
+                                            <check if="{{ in_array(@activity, @_POST['outdoors'])}}">
+                                                checked="checked"
+                                            </check>
+                                                   id="{{ @activity }}">
                                             <label class="form-check-label" for="{{ @activity }}">{{ @activity }}</label>
                                         </div>
                                     </repeat>
@@ -61,8 +79,12 @@
                                 <div class="col-sm-12">
                                     <repeat group="{{ @outdoors2 }}" value="{{ @activity }}">
                                         <div class="form-check form-check-inline col-sm-2 ml-5 p-2">
-                                            <input type="checkbox" class="form-check-input"
-                                                   value="{{ @activity }}" id="{{ @activity }}">
+                                            <input type="checkbox" name="outdoors[]" class="form-check-input"
+                                                   value="{{ @activity }}"
+                                            <check if="{{ in_array(@activity, @_POST['outdoors'])}}">
+                                                checked="checked"
+                                            </check>
+                                                   id="{{ @activity }}">
                                             <label class="form-check-label" for="{{ @activity }}">{{ @activity }}</label>
                                         </div>
                                     </repeat>
@@ -70,7 +92,7 @@
                             </div><!--End form-row-->
                         </fieldset>
                         <div class="row float-right">
-                            <input type="submit" id="submitInterests" class="btn btn-primary" value="Next >">
+                            <input type="submit" id="submitInterests" name="submitInterests" class="btn btn-primary" value="Next >">
                         </div>
                     </form>
                 </div><!--End col-12-->

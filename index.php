@@ -189,6 +189,45 @@ $f3->route('GET|POST /interests', function($f3)
    $f3->set('outdoors', array('Hiking', 'Biking', 'Swimming', 'Climbing'));
    $f3->set('outdoors2', array('Running', 'Camping', 'Beach', 'Sports'));
 
+   if(isset($_POST['submitInterests']))
+   {
+        $isValid = true;
+        if(isset($_POST['indoors']))
+        {
+            $indoors = $_POST['indoors'];
+            print_r($indoors);
+
+            if(validIndoor($indoors))
+            {
+                $_SESSION['indoors'] = $indoors;
+            }
+            else
+            {
+                $f3->set("errors['indoors']", "Invalid selection for indoor activity.");
+                $isValid = false;
+            }
+        }
+        if(isset($_POST['outdoors']))
+        {
+            $outdoors = $_POST['outdoors'];
+            if(validOutdoor($outdoors))
+            {
+                $_SESSION['outdoors'] = $outdoors;
+            }
+            else
+            {
+                $f3->set("errors['outdoors']", "Invalid selection for outdoor activity.");
+                $isValid = false;
+            }
+        }
+
+        if($isValid)
+        {
+            $f3->reroute('summary');
+        }
+   }
+
+
    echo Template::instance()->render('views/interests.php');
 });
 
