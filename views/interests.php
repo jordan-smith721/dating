@@ -14,8 +14,8 @@
             </div><!--End Row-->
             <div class="row">
                 <div class="col-sm-12">
-                    <form id="interestForm" action="" method="post">
-        <!----------------INDOOR ACTIVITIES----------------------------->
+                    <form id="interestForm" action="#" method="post">
+        <!--**********************INDOOR ACTIVITIES*********************************-->
                         <!--Activites are in two rows with 4 checkboxes each - determined by the
                          arrays in index.php-->
                         <fieldset class="form-group">
@@ -25,7 +25,7 @@
                             </check>
                             <div class="form-row">
                                 <div class="col-sm-12">
-                                    <repeat group="{{ @indoors }}" value="{{ @activity }}">
+                                    <repeat group="{{ @indoors }}" value="{{ @id => @activity }}">
                                         <div class="form-check form-check-inline col-sm-2 ml-5 p-2">
                                         <input type="checkbox" name="indoors[]" class="form-check-input"
                                                value="{{ @activity }}"
@@ -34,15 +34,15 @@
                                                 checked="checked"
                                             </check>
                                             </check>
-                                            id="{{ @activity }}">
-                                        <label class="form-check-label" for="{{ @activity }}">{{ @activity }}</label>
+                                            id="{{ @id }}">
+                                        <label class="form-check-label" for="{{ @id }}">{{ @activity }}</label>
                                         </div>
                                     </repeat>
                                 </div>
                             </div><!--End form-row-->
                             <div class="form-row">
                                 <div class="col-sm-12">
-                                    <repeat group="{{ @indoors2 }}" value="{{ @activity }}">
+                                    <repeat group="{{ @indoors2 }}" value="{{ @id => @activity }}">
                                         <div class="form-check form-check-inline col-sm-2 ml-5 p-2">
                                             <input type="checkbox" name="indoors[]" class="form-check-input"
                                                    value="{{ @activity }}"
@@ -51,14 +51,14 @@
                                                 checked="checked"
                                             </check>
                                             </check>
-                                                   id="{{ @activity }}">
-                                            <label class="form-check-label" for="{{ @activity }}">{{ @activity }}</label>
+                                                   id="{{ @id }}">
+                                            <label class="form-check-label" for="{{ @id }}">{{ @activity }}</label>
                                         </div>
                                     </repeat>
                                 </div>
                             </div><!--End form-row-->
                         </fieldset>
-        <!-----------------------------------OUTDOOR ACTIVITES----------------------->
+        <!--*********************************OUTDOOR ACTIVITIES**************************-->
                         <fieldset class="form-group">
                             <legend>Outdoor activities</legend>
                             <check if="{{@errors['outdoors']}}">
@@ -66,7 +66,7 @@
                             </check>
                             <div class="form-row">
                                 <div class="col-sm-12">
-                                    <repeat group="{{ @outdoors }}" value="{{ @activity }}">
+                                    <repeat group="{{ @outdoors }}" value="{{ @id => @activity }}">
                                         <div class="form-check form-check-inline col-sm-2 ml-5 p-2">
                                             <input type="checkbox" name="outdoors[]" class="form-check-input"
                                                    value="{{ @activity }}"
@@ -75,15 +75,15 @@
                                                 checked="checked"
                                             </check>
                                             </check>
-                                                   id="{{ @activity }}">
-                                            <label class="form-check-label" for="{{ @activity }}">{{ @activity }}</label>
+                                                   id="{{ @id }}">
+                                            <label class="form-check-label" for="{{ @id }}">{{ @activity }}</label>
                                         </div>
                                     </repeat>
                                 </div>
                             </div><!--End form-row-->
                             <div class="form-row">
                                 <div class="col-sm-12">
-                                    <repeat group="{{ @outdoors2 }}" value="{{ @activity }}">
+                                    <repeat group="{{ @outdoors2 }}" value="{{ @id => @activity }}">
                                         <div class="form-check form-check-inline col-sm-2 ml-5 p-2">
                                             <input type="checkbox" name="outdoors[]" class="form-check-input"
                                                    value="{{ @activity }}"
@@ -92,8 +92,8 @@
                                                 checked="checked"
                                             </check>
                                             </check>
-                                                   id="{{ @activity }}">
-                                            <label class="form-check-label" for="{{ @activity }}">{{ @activity }}</label>
+                                                   id="{{ @id }}">
+                                            <label class="form-check-label" for="{{ @id }}">{{ @activity }}</label>
                                         </div>
                                     </repeat>
                                 </div>

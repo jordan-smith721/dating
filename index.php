@@ -189,10 +189,10 @@ $f3->route('GET|POST /profile', function($f3)
 $f3->route('GET|POST /interests', function($f3)
 {
    $f3->set("title", "Interests");
-   $f3->set('indoors', array('TV', 'Video Games', 'Reading', 'Cooking'));
-   $f3->set('indoors2', array('Board Games', 'Movies', 'Puzzles', 'Gym'));
-   $f3->set('outdoors', array('Hiking', 'Biking', 'Swimming', 'Climbing'));
-   $f3->set('outdoors2', array('Running', 'Camping', 'Beach', 'Sports'));
+   $f3->set('indoors', array('tv'=>'TV', 'vg'=>'Video Games', 'reading'=>'Reading', 'cooking'=>'Cooking'));
+   $f3->set('indoors2', array('bg'=>'Board Games', 'movies'=>'Movies', 'puzzles'=>'Puzzles', 'gym'=>'Gym'));
+   $f3->set('outdoors', array('hiking'=>'Hiking', 'biking'=>'Biking', 'swimming'=>'Swimming', 'climbing'=>'Climbing'));
+   $f3->set('outdoors2', array('running'=>'Running', 'camping'=>'Camping', 'beach'=>'Beach', 'sports'=>'Sports'));
 
    if(isset($_POST['submitInterests']))
    {
@@ -200,7 +200,6 @@ $f3->route('GET|POST /interests', function($f3)
         if(isset($_POST['indoors']))
         {
             $indoors = $_POST['indoors'];
-            print_r($indoors);
 
             if(validIndoor($indoors))
             {

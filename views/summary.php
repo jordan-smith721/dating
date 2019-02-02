@@ -23,7 +23,7 @@
                 </div><!--End col-sm-6-->
                 <div class="col-sm-6">
                     <div>
-                        <img id="imgPlaceholder" src="images/profile-holder.jpg" class="rounded mx-auto d-block img-fluid">
+                        <img id="imgPlaceholder" src="images/profile-holder.jpg" alt="Profile Image" class="rounded mx-auto d-block img-fluid">
                     </div>
                     <div>
                         <h5 class="text-muted">Biography</h5>
