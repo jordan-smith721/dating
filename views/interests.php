@@ -29,8 +29,10 @@
                                         <div class="form-check form-check-inline col-sm-2 ml-5 p-2">
                                         <input type="checkbox" name="indoors[]" class="form-check-input"
                                                value="{{ @activity }}"
+                                            <check if="{{ isset(@_POST['indoors']) }}">
                                             <check if="{{ in_array(@activity, @_POST['indoors'])}}">
                                                 checked="checked"
+                                            </check>
                                             </check>
                                             id="{{ @activity }}">
                                         <label class="form-check-label" for="{{ @activity }}">{{ @activity }}</label>
@@ -44,8 +46,10 @@
                                         <div class="form-check form-check-inline col-sm-2 ml-5 p-2">
                                             <input type="checkbox" name="indoors[]" class="form-check-input"
                                                    value="{{ @activity }}"
+                                            <check if="{{ isset(@_POST['indoors']) }}">
                                             <check if="{{ in_array(@activity, @_POST['indoors'])}}">
                                                 checked="checked"
+                                            </check>
                                             </check>
                                                    id="{{ @activity }}">
                                             <label class="form-check-label" for="{{ @activity }}">{{ @activity }}</label>
@@ -66,8 +70,10 @@
                                         <div class="form-check form-check-inline col-sm-2 ml-5 p-2">
                                             <input type="checkbox" name="outdoors[]" class="form-check-input"
                                                    value="{{ @activity }}"
+                                            <check if="{{ isset(@_POST['outdoors']) }}">
                                             <check if="{{ in_array(@activity, @_POST['outdoors'])}}">
                                                 checked="checked"
+                                            </check>
                                             </check>
                                                    id="{{ @activity }}">
                                             <label class="form-check-label" for="{{ @activity }}">{{ @activity }}</label>
@@ -81,8 +87,10 @@
                                         <div class="form-check form-check-inline col-sm-2 ml-5 p-2">
                                             <input type="checkbox" name="outdoors[]" class="form-check-input"
                                                    value="{{ @activity }}"
+                                            <check if="{{ isset(@_POST['outdoors']) }}">
                                             <check if="{{ in_array(@activity, @_POST['outdoors'])}}">
                                                 checked="checked"
+                                            </check>
                                             </check>
                                                    id="{{ @activity }}">
                                             <label class="form-check-label" for="{{ @activity }}">{{ @activity }}</label>

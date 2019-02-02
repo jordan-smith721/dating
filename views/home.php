@@ -1,5 +1,5 @@
 <include href="views/head.html"></include>
-
+<body>
 <include href="views/navbar.php"></include>
 
 <div class="container d-flex">
