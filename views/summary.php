@@ -10,14 +10,21 @@
                 <div class="col-sm-6">
                     <div class="card">
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Name:</li>
-                            <li class="list-group-item">Gender:</li>
-                            <li class="list-group-item">Age:</li>
-                            <li class="list-group-item">Phone:</li>
-                            <li class="list-group-item">Email:</li>
-                            <li class="list-group-item">State:</li>
-                            <li class="list-group-item">Seeking:</li>
-                            <li class="list-group-item">Interests:</li>
+                            <li class="list-group-item">Name: {{ @_SESSION['fname'] }} {{@_SESSION['lname']}}</li>
+                            <li class="list-group-item">Gender: {{ @_SESSION['gender'] }}</li>
+                            <li class="list-group-item">Age: {{ @_SESSION['age']}}</li>
+                            <li class="list-group-item">Phone: {{ @_SESSION['phone'] }}</li>
+                            <li class="list-group-item">Email: {{ @_SESSION['email'] }}</li>
+                            <li class="list-group-item">State: {{ @_SESSION['state'] }}</li>
+                            <li class="list-group-item">Seeking: {{ @_SESSION['seeking'] }}</li>
+                            <li class="list-group-item">Interests: <br>
+                                <check if="{{ isset(@_POST['indoors']) }}">
+                                    Indoor: {{ implode(", ", @_SESSION['indoors']) }} <br>
+                                </check>
+                                <check if="{{ isset(@_POST['outdoors']) }}">
+                                    Outdoors: {{ implode(", ", @_SESSION['outdoors']) }}
+                                </check>
+                            </li>
                         </ul>
                     </div><!--End Card-->
                 </div><!--End col-sm-6-->
@@ -29,12 +36,7 @@
                         <h5 class="text-muted">Biography</h5>
                     </div>
                     <div id="bio" class="text-center">
-                        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-                            anim id est laborum.</p>
+                        <p class="lead">{{ @_SESSION['bio'] }}</p>
                     </div>
                 </div>
             </div><!--End row-->

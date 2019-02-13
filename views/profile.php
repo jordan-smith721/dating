@@ -29,18 +29,32 @@
                             <select name="state" id="state" class="form-control">
                                 <option>--Select a State--</option>
                                 <repeat group="{{ @states }}" value="{{@stateOption}}">
-                                    <option>{{@stateOption}}</option>
+                                    <option
+                                    <check if="{{ @stateOption == @_POST['state'] }}">selected</check>
+                                    >{{@stateOption}}</option>
                                 </repeat>
                             </select>
                         </div>
                         <fieldset class="form-group">
                             <legend>Seeking</legend>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="gender" id="male" value="male">
+                                <input class="form-check-input" type="radio" name="seeking" id="male" value="male"
+                                <check if="{{ isset(@_POST['seeking'])}}">
+                                    <check if="{{ @_POST['seeking'] == 'male' }}">
+                                        checked = "checked"
+                                    </check>
+                                </check>
+                                >
                                 <label class="form-check-label" for="male">Male</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="gender" id="female" value="female">
+                                <input class="form-check-input" type="radio" name="seeking" id="female" value="female"
+                                <check if="{{ isset(@_POST['seeking'])}}">
+                                    <check if="{{ @_POST['seeking'] == 'female' }}">
+                                        checked = "checked"
+                                    </check>
+                                </check>
+                                >
                                 <label class="form-check-label" for="female">Female</label>
                             </div>
                         </fieldset>
@@ -49,7 +63,9 @@
                 <div class="col-sm-6">
                         <div class="form-group">
                             <label for="bio">Biography</label>
-                            <textarea name="bio" id="bio" rows="5" class="form-control"></textarea>
+                            <textarea name="bio" id="bio" rows="5"
+                                      class="form-control"><check if="{{ isset(@_POST['bio']) }}">{{ @_POST['bio'] }}</check>
+                            </textarea>
                         </div>
                 </div><!--End col-6-->
             </div><!--End Row-->

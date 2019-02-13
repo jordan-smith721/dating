@@ -94,6 +94,17 @@ $f3->route('GET|POST /information', function($f3)
             }
 
         }
+
+        //set gender(doesn't need validation)
+        if(isset($_POST['gender']))
+        {
+            $_SESSION['gender'] = $_POST['gender'];
+        }
+        else
+        {
+            $_SESSION['gender'] = "Not Specified";
+        }
+
         if($isValid)
         {
             $f3->reroute('profile');
@@ -163,6 +174,36 @@ $f3->route('GET|POST /profile', function($f3)
 
     $isValid = true;
 
+    //set state (not validated)
+    if(isset($_POST['state']))
+    {
+        $_SESSION['state'] = $_POST['state'];
+    }
+    else
+    {
+        $_SESSION['state'] = "Location not specified";
+    }
+
+    //set seeking
+    if(isset($_POST['seeking']))
+    {
+        $_SESSION['seeking'] = $_POST['seeking'];
+    }
+    else
+    {
+        $_SESSION['seeking'] = "Not Specified";
+    }
+
+    //set bio
+    if(!empty($_POST['bio']))
+    {
+        $_SESSION['bio'] = $_POST['bio'];
+    }
+    else
+    {
+        $_SESSION['bio'] = "This user has not yet given a biography!";
+    }
+
     if(isset($_POST['email']))
     {
         $email = $_POST['email'];
@@ -181,7 +222,6 @@ $f3->route('GET|POST /profile', function($f3)
             $f3->reroute('interests');
         }
     }
-
 
     echo Template::instance()->render('views/profile.php');
 });
@@ -211,6 +251,10 @@ $f3->route('GET|POST /interests', function($f3)
                 $isValid = false;
             }
         }
+        else
+        {
+            $_SESSION['indoors'] = "None";
+        }
         if(isset($_POST['outdoors']))
         {
             $outdoors = $_POST['outdoors'];
@@ -223,6 +267,10 @@ $f3->route('GET|POST /interests', function($f3)
                 $f3->set("errors['outdoors']", "Invalid selection for outdoor activity.");
                 $isValid = false;
             }
+        }
+        else
+        {
+            $_SESSION['outdoors'] = "None";
         }
 
         if($isValid)
