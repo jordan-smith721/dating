@@ -35,59 +35,52 @@ $f3->route('GET|POST /information', function($f3)
     $_SESSION = array();
     $isValid = true;
 
+    $fname = "";
+    $lname = "";
+    $age = "";
+    $gender = "";
+    $phone = "";
+
     if(!empty($_POST))
     {
         //validate first name
         if(isset($_POST['fname']))
         {
             $fname = $_POST['fname'];
-            if(validName($fname))
-            {
-                $_SESSION['fname'] = $fname;
-            }
-            else
+            if(!validName($fname))
             {
                 $f3->set("errors['fname']", "Please enter a first name.");
                 $isValid = false;
             }
+
         }
         //validate last name
         if(isset($_POST['lname']))
         {
             $lname = $_POST['lname'];
-            if(validName($lname))
-            {
-                $_SESSION['lname'] = $lname;
-            }
-            else
+            if(!validName($lname))
             {
                 $f3->set("errors['lname']", "Please enter a last name.");
                 $isValid = false;
             }
+
         }
         //validate age
         if(isset($_POST['age']))
         {
             $age = $_POST['age'];
-            if(validAge($age))
-            {
-                $_SESSION['age'] = $age;
-            }
-            else
+            if(!validAge($age))
             {
                 $f3->set("errors['age']", "Please enter a valid age.");
                 $isValid = false;
             }
+
         }
         //validate phone
         if(isset($_POST['phone']))
         {
             $phone = $_POST['phone'];
-            if(validPhone($phone))
-            {
-                $_SESSION['phone'] = $phone;
-            }
-            else
+            if(!validPhone($phone))
             {
                 $f3->set("errors['phone']", "Please enter a valid phone number.");
                 $isValid = false;
@@ -98,15 +91,23 @@ $f3->route('GET|POST /information', function($f3)
         //set gender(doesn't need validation)
         if(isset($_POST['gender']))
         {
-            $_SESSION['gender'] = $_POST['gender'];
+            $gender = $_POST['gender'];
         }
-        else
-        {
-            $_SESSION['gender'] = "Not Specified";
-        }
+
 
         if($isValid)
         {
+            if(isset($_POST['premium']))
+            {
+                $member = new PremiumMember($fname, $lname, $age, $gender, $phone);
+                $_SESSION['member'] = $member;
+            }
+            else
+            {
+                $member = new Member($fname, $lname, $age, $gender, $phone);
+                $_SESSION['member'] = $member;
+            }
+
             $f3->reroute('profile');
         }
     }
@@ -173,35 +174,39 @@ $f3->route('GET|POST /profile', function($f3)
         ));
 
     $isValid = true;
+    $member = $_SESSION['member'];
 
     //set state (not validated)
     if(isset($_POST['state']))
     {
-        $_SESSION['state'] = $_POST['state'];
+        $member->setState($_POST['state']);
     }
     else
     {
-        $_SESSION['state'] = "Location not specified";
+        $member->setState("Location not specified");
     }
 
     //set seeking
     if(isset($_POST['seeking']))
     {
-        $_SESSION['seeking'] = $_POST['seeking'];
+        $member->setSeeking($_POST['seeking']);
     }
     else
     {
-        $_SESSION['seeking'] = "Not Specified";
+        $member->setSeeking("Not Specified");
     }
 
     //set bio
+    $f3->set('bioText', ""); //for sticky forms
     if(!empty($_POST['bio']))
     {
-        $_SESSION['bio'] = $_POST['bio'];
+        $member->setBio($_POST['bio']);
+        $f3->set('bioText', $_POST['bio']);
     }
     else
     {
-        $_SESSION['bio'] = "This user has not yet given a biography!";
+        $member->setBio("This user has not yet given a biography!");
+
     }
 
     if(isset($_POST['email']))
@@ -209,7 +214,7 @@ $f3->route('GET|POST /profile', function($f3)
         $email = $_POST['email'];
         if(validEmail($email))
         {
-            $_SESSION['email'] = $email;
+            $member->setEmail($email);
         }
         else
         {
@@ -217,9 +222,18 @@ $f3->route('GET|POST /profile', function($f3)
             $isValid = false;
         }
 
+        //reroute to interests if premium member - summary if not
         if($isValid)
         {
-            $f3->reroute('interests');
+            $_SESSION['member'] = $member;
+
+            if($member instanceof  PremiumMember)
+            {
+                $f3->reroute('interests');
+            }
+
+            $f3->reroute('summary');
+
         }
     }
 
@@ -236,14 +250,17 @@ $f3->route('GET|POST /interests', function($f3)
 
    if(isset($_POST['submitInterests']))
    {
+        $member = $_SESSION['member'];
         $isValid = true;
+
+        //validate indoor interests
         if(isset($_POST['indoors']))
         {
             $indoors = $_POST['indoors'];
 
             if(validIndoor($indoors))
             {
-                $_SESSION['indoors'] = $indoors;
+               $member->setIndoorInterests($indoors);
             }
             else
             {
@@ -251,16 +268,14 @@ $f3->route('GET|POST /interests', function($f3)
                 $isValid = false;
             }
         }
-        else
-        {
-            $_SESSION['indoors'] = "None";
-        }
+
+        //validate outdoor interests
         if(isset($_POST['outdoors']))
         {
             $outdoors = $_POST['outdoors'];
             if(validOutdoor($outdoors))
             {
-                $_SESSION['outdoors'] = $outdoors;
+                $member->setOutdoorInterests($outdoors);
             }
             else
             {
@@ -268,13 +283,11 @@ $f3->route('GET|POST /interests', function($f3)
                 $isValid = false;
             }
         }
-        else
-        {
-            $_SESSION['outdoors'] = "None";
-        }
+
 
         if($isValid)
         {
+            $_SESSION['member'] = $member;
             $f3->reroute('summary');
         }
    }
@@ -286,6 +299,19 @@ $f3->route('GET|POST /interests', function($f3)
 $f3->route('GET|POST /summary', function($f3)
 {
     $f3->set("title", "Profile Summary");
+
+    //check if indoors were set to create variables
+    if (isset($_POST['indoors']))
+    {
+        $indoorInterests = $_SESSION['member']->getIndoorInterests();
+    }
+    if (isset($_POST['outdoors']))
+    {
+        $outdoorInterests = $_SESSION['member']->getOutdoorInterests();
+    }
+
+    $f3->set('outdoors', $outdoorInterests);
+    $f3->set('indoors', $indoorInterests);
 
     echo Template::instance()->render('views/summary.php');
 });
