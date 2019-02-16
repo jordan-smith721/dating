@@ -63,9 +63,7 @@
                 <div class="col-sm-6">
                         <div class="form-group">
                             <label for="bio">Biography</label>
-                            <textarea name="bio" id="bio" rows="5"
-                                      class="form-control"><check if="{{ isset(@_POST['bio']) }}">{{ @_POST['bio'] }}</check>
-                            </textarea>
+                            <textarea name="bio" id="bio" rows="5" class="form-control">{{@bioText}}</textarea>
                         </div>
                 </div><!--End col-6-->
             </div><!--End Row-->

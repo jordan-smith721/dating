@@ -253,6 +253,9 @@ $f3->route('GET|POST /interests', function($f3)
         $member = $_SESSION['member'];
         $isValid = true;
 
+       $member->setIndoorInterests(Array());
+       $member->setOutdoorInterests(Array());
+
         //validate indoor interests
         if(isset($_POST['indoors']))
         {
@@ -300,18 +303,16 @@ $f3->route('GET|POST /summary', function($f3)
 {
     $f3->set("title", "Profile Summary");
 
-    //check if indoors were set to create variables
-    if (isset($_POST['indoors']))
+    if($_SESSION['member'] instanceof PremiumMember)
     {
+
         $indoorInterests = $_SESSION['member']->getIndoorInterests();
-    }
-    if (isset($_POST['outdoors']))
-    {
+        $f3->set('indoors', implode(", ", $indoorInterests));
         $outdoorInterests = $_SESSION['member']->getOutdoorInterests();
+        $f3->set('outdoors', implode(", ", $outdoorInterests));
+
     }
 
-    $f3->set('outdoors', $outdoorInterests);
-    $f3->set('indoors', $indoorInterests);
 
     echo Template::instance()->render('views/summary.php');
 });
