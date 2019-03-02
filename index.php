@@ -13,6 +13,7 @@ error_reporting(E_ALL);
 require_once 'vendor/autoload.php';
 session_start();
 
+
 //Create an instance of the Base class
 $f3 = Base::instance();
 
@@ -302,20 +303,52 @@ $f3->route('GET|POST /interests', function($f3)
 $f3->route('GET|POST /summary', function($f3)
 {
     $f3->set("title", "Profile Summary");
+    $member = $_SESSION['member'];
 
-    if($_SESSION['member'] instanceof PremiumMember)
+    $fname = $member->getFname();
+    $lname = $member->getLname();
+    $age = $member->getAge();
+    $gender = $member->getGender();
+    $phone = $member->getPhone();
+    $email = $member->getEmail();
+    $state = $member->getState();
+    $seeking = $member->getSeeking();
+    $bio = $member->getBio();
+    $image = "NULL";
+
+    if($member instanceof PremiumMember)
     {
-
-        $indoorInterests = $_SESSION['member']->getIndoorInterests();
+        $indoorInterests = $member->getIndoorInterests();
         $f3->set('indoors', implode(", ", $indoorInterests));
-        $outdoorInterests = $_SESSION['member']->getOutdoorInterests();
+        $outdoorInterests = $member->getOutdoorInterests();
         $f3->set('outdoors', implode(", ", $outdoorInterests));
 
+        $premium = '1';
+
+        //combine indoor and outdoor interests into one string
+        $allInterests = (implode(", ", array_merge($indoorInterests, $outdoorInterests)));
+
+    }
+    else
+    {
+        $premium = '0';
+        $allInterests = "NULL";
     }
 
+    //call insert member function
+    $dbConnect = new Database();
+    $cnxn = $dbConnect->connect();
+    $dbConnect->insertMember($cnxn, $fname, $lname, $age, $gender, $phone, $email, $state, $seeking, $bio,
+        $premium, $image, $allInterests);
 
     echo Template::instance()->render('views/summary.php');
 });
+
+$f3->route("GET /admin", function($f3)
+{
+    echo Template::instance()->render('views/admin.php');
+});
+
 
 //Run fat free
 $f3->run();
