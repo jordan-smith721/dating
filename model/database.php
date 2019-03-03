@@ -71,14 +71,31 @@ class Database
 
     }
 
-    function getMembers()
+    function getMembers($cnxn)
     {
+        $sql = "SELECT * FROM members ORDER BY lname";
 
+        $statement = $cnxn->prepare($sql);
+
+        $statement->execute();
+
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
     }
 
-    function getMember($id)
+    function getMember($cnxn, $id)
     {
+        $sql = "SELECT * FROM members WHERE member_id = :member_id";
 
+        $statement = $cnxn->prepare($sql);
+
+        $statement->bindValue(":member_id", $id, PDO::PARAM_STR);
+
+        $statement->execute();
+
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+
+        return $result;
     }
 
 }
