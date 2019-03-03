@@ -346,7 +346,27 @@ $f3->route('GET|POST /summary', function($f3)
 
 $f3->route("GET /admin", function($f3)
 {
+
+    $dbConnect = new Database();
+    $cnxn = $dbConnect->connect();
+    $result = $dbConnect->getMembers($cnxn);
+
+    $f3->set('results', $result);
+
+
     echo Template::instance()->render('views/admin.php');
+});
+
+$f3->route("GET /view/@member_id", function($f3, $params)
+{
+    $dbConnect = new Database();
+    $cnxn = $dbConnect->connect();
+
+    $member_id = $params['member_id'];
+    $member = $dbConnect->getMember($cnxn, $member_id);
+    $f3->set('member', $member);
+    echo Template::instance()->render('views/view-member.html');
+
 });
 
 

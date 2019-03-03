@@ -1,0 +1,19 @@
+<include href="views/head.html"></include>
+<body>
+<include href="views/navbar.php"></include>
+
+<h1>{{@member['fname'] }} {{ @member['lname'] }}</h1>
+<p>Age: {{@member['age'] }}</p>
+<p>Phone Number: {{@member['phone'] }}</p>
+<p>Email: {{@member['email'] }}</p>
+<p>State: {{@member['state'] }}</p>
+<p>Gender: {{@member['gender'] }}</p>
+<p>Seeking: {{@member['seeking'] }}</p>
+<check if="{{ @member['interests'] != 'NULL' }}">
+    <p>Interests: {{@member['interests'] }}</p>
+</check>
+
+<p>Bio: {{@member['bio'] }}</p>
+
+</body>
+</html>

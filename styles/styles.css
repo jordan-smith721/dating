@@ -5,3 +5,7 @@ body{
 .container {
     height: 90vh;
 }
+
+.fa-check-square {
+    color: royalblue;
+}
